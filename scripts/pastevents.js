@@ -233,7 +233,7 @@ function pastevent() {
          <div class="card-footer">
            <div class="footer">
              <div class="titulo">
-               <p>${card.price}</p>
+               <p>Price: ${card.price}</p>
              </div>
      
              <div class="boton">
