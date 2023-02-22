@@ -176,7 +176,7 @@ data = {
     ]
   };
 
-  //trabajaremos en los checkboxes pc....
+  //trabajaremos en los checkboxes notebook....
 
 function checkboxfn() {
 
