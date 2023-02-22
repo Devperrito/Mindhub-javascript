@@ -180,7 +180,7 @@ data = {
 
 function checkboxfn() {
 
-  //traemos los checkbox
+  //traemos los checkbox desde pc
   let cbs = document.querySelectorAll('.checkbox');
 
   //let cbss = document.querySelector('.checkbox:checked').value;
