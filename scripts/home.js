@@ -176,6 +176,36 @@ data = {
     ]
   };
 
+//trabajaremos en los checkboxes
+
+function checkboxfn() {
+
+  //traemos los checkbox
+  let cbs = document.querySelectorAll('.checkbox');
+
+  //let cbss = document.querySelector('.checkbox:checked').value;
+
+
+
+  for(let cb of cbs){
+    cb.addEventListener('click', function() {
+      if(cb.checked === true){
+
+        switch (data.events.category) {
+          case "":
+          
+
+        }
+
+        c("esta checked");
+      }
+    });
+  }
+
+}
+
+
+
 //dom
 let cards = document.querySelectorAll('.card');
 
@@ -222,5 +252,5 @@ function CrearCards() {
     cards.innerHTML = plantillaCard;
 }
 
-
+checkboxfn();
 CrearCards();

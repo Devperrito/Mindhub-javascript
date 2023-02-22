@@ -178,6 +178,9 @@ data = {
 
 //la fecha actual
 function currentDateNow() {
+
+  //testing changes
+
     //Primero patron para solo numeros
     let regex = /(\d+)/g;
 

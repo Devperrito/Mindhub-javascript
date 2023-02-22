@@ -1012,9 +1012,8 @@ table {
   @media (min-width: 768px) {
 
       header {
-          width: 100%;
-          height: 30vh;
-     
+        width: 100%;
+        height: 30vh;
       }
       
       .container {
@@ -1139,7 +1138,7 @@ table {
           display: flex;
           justify-content: space-evenly;
           align-items: center;
-          width: 60%;
+          width: 80%;
       }
       
       .cb-left__inner {
@@ -1147,15 +1146,36 @@ table {
           align-items: center;
           justify-content: space-evenly;
           flex-direction: row;
-          width: 90%;
+          width: 98%; 
           height: 90%;
+      } /* width: ultimo cambio responsive ------------------------------------- */
+
+      .cb-left__inner > label { /* ultimo cambio responsive  -------------------  */
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 14%;
       }
+
+      .cb-left__inner > label > p {font-size: 12px;}
       
-      .cb-container > .input-right {
+      .cb-container > .input-right { /* ultimo cambio responsive  -------------------  */
           display: flex;
           justify-content: space-evenly;
           align-items: center;
-          width: 40%;
+          width: 20%;
+      }
+
+      .form-search { /* ultimo cambio responsive  -------------------  */
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        border-radius: 10px;
+        width: 90%;
+      }
+
+      .form-search > input { /* ultimo cambio responsive  -------------------  */
+        width: 50%;
       }
       
       /* cards ------ */
