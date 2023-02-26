@@ -1,6 +1,9 @@
 //abreviamos console.log()
 let c = console.log;
 
+//texto length
+//let texto = document.querySelectorAll('');
+
 //datos para llenar
 data = {
   currentDate: "2022-01-01",
@@ -185,6 +188,11 @@ data = {
   ],
 };
 
+//agregamos elipsis al final del texto descriptivo
+function textoLength (texto, maximopermitido){
+  return `${texto.slice(0, maximopermitido)} …`;
+}
+
 //trabajaremos en los checkboxes
 function Cbvalues(selectedCategory, datacategory) {
   for (const data of datacategory) {
@@ -216,6 +224,7 @@ let cards = document.querySelectorAll(".card");
 
 function CrearCards() {
   const cards = document.querySelector(".cards");
+  const cardWrapper = document.querySelector(".card-wrapper");
   let plantillaCard = "";
 
   for (let card of data.events) {
@@ -230,14 +239,14 @@ function CrearCards() {
          <div class="card-main">
            <div class="titulos">
              <h1>${card.name}</h1>
-             <p>${card.description}</p>
+             <p>${textoLength(card.description, 40)}</p>
            </div>
      
          </div>
          <div class="card-footer">
            <div class="footer">
              <div class="titulo">
-               <p>Price: $ ${card.price}</p>
+               <p>Price: $${card.price}</p>
              </div>
      
              <div class="boton">
@@ -251,7 +260,8 @@ function CrearCards() {
        </div>
        `;
   }
-  cards.innerHTML = plantillaCard;
+  //cards.innerHTML = plantillaCard;
+  cardWrapper.innerHTML = plantillaCard;
 }
 
 //Cbvalues("Museum", data.events);
