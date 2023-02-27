@@ -1833,8 +1833,8 @@ td {
   }
 
   /* upcoming events */
-  .texto-upcoming {
-    font-size: 12px;
+  .texto-container > h2 {
+    font-size: 11px;
   }
 
   main {

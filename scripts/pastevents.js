@@ -204,6 +204,7 @@ function pastevent() {
 
     const cards = document.querySelector('.cards');
     const cardWrapper = document.querySelector(".card-wrapper");
+
     let plantillaCard = "";
 
     for(let card of data.events){
@@ -235,7 +236,7 @@ function pastevent() {
          <div class="card-main">
            <div class="titulos">
              <h1>${card.name}</h1>
-             <p>${textoLength(card.description)}</p>
+             <p>${textoLength(card.description, 40)}</p>
            </div>
      
          </div>
@@ -256,8 +257,7 @@ function pastevent() {
          </div>
          `;
         }
-        //pusheamos las fechas y lo guardamos en array (fechas)
-        //fechas.push(fecha); 
+      
     }
 
     cardWrapper.innerHTML = plantillaCard;

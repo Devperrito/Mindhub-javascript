@@ -224,6 +224,7 @@ let cards = document.querySelectorAll(".card");
 
 function CrearCards() {
   const cards = document.querySelector(".cards");
+
   const cardWrapper = document.querySelector(".card-wrapper");
   let plantillaCard = "";
 
