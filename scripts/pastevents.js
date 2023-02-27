@@ -176,6 +176,11 @@ data = {
     ]
   };
 
+//agregamos elipsis al final del texto descriptivo
+function textoLength (texto, maximopermitido){
+  return `${texto.slice(0, maximopermitido)} …`;
+}
+
 //la fecha actual
 function currentDateNow() {
 
@@ -198,6 +203,7 @@ function currentDateNow() {
 function pastevent() {
 
     const cards = document.querySelector('.cards');
+    const cardWrapper = document.querySelector(".card-wrapper");
     let plantillaCard = "";
 
     for(let card of data.events){
@@ -229,7 +235,7 @@ function pastevent() {
          <div class="card-main">
            <div class="titulos">
              <h1>${card.name}</h1>
-             <p>${card.description}</p>
+             <p>${textoLength(card.description)}</p>
            </div>
      
          </div>
@@ -254,7 +260,7 @@ function pastevent() {
         //fechas.push(fecha); 
     }
 
-    cards.innerHTML = plantillaCard;
+    cardWrapper.innerHTML = plantillaCard;
 }
 
 pastevent();

@@ -176,6 +176,11 @@ data = {
     ]
   };
 
+  //agregamos elipsis al final del texto descriptivo
+  function textoLength (texto, maximopermitido){
+    return `${texto.slice(0, maximopermitido)} …`;
+  }
+
   function currentDateNow() {
     //Primero patron para solo numeros
     let regex = /(\d+)/g;
@@ -192,7 +197,8 @@ data = {
   }
 
   function upcomingevent() {
-
+    
+    const cardWrapper = document.querySelector(".card-wrapper");
     const cards = document.querySelector('.cards');
     let plantillaCard = "";
 
@@ -227,7 +233,7 @@ data = {
          <div class="card-main">
            <div class="titulos">
              <h1>${card.name}</h1>
-             <p>${card.description}</p>
+             <p>${textoLength(card.description)}</p>
            </div>
      
          </div>
@@ -252,7 +258,7 @@ data = {
         //fechas.push(fecha); 
     }
 
-    cards.innerHTML = plantillaCard;
+  cardWrapper.innerHTML = plantillaCard;
 }
 
 currentDateNow();

@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilos.css">
-    <title>Upcoming Events</title>
+    <title>Upcoming Event</title>
 
     <!-- FAVICON -->
-    <link rel="shortcut icon" href="recursos/Logo Amazing Events.png" >
+    <link rel="shortcut icon" href="recursos/Logoevents.png">
 
     <!-- LINKS DE UTILIDADES -->
     <link
@@ -25,19 +25,23 @@
           <div class="wrapper-logo__menu">
             <div class="logo-container">
               <div class="logo-container__inner">
-                <img src="recursos/Logo Amazing Events.png" alt="logo increible">
+                <img src="recursos/Logoevents.png" alt="logo increible">
               </div>
             </div>
 
             <div class="menu-container">
               <div class="menu-container__inner">
-                <ul>
-                  <li><a href="Home.html">Home</a></li>
-                  <li><a href="Upcoming Events.html">Upcoming Events</a></li>
-                  <li><a href="PastEvents.html">Past Events</a></li>
-                  <li><a href="Contactus.html">Contact</a></li>
-                  <li><a href="Stats.html">Stats</a></li>
-                </ul>
+
+                <div class="ul-wrapper">
+                  <ul>
+                    <li><a href="Home.html">Home</a></li>
+                    <li><a href="Upcoming Events.html">Upcoming Events</a></li>
+                    <li><a href="PastEvents.html">Past Events</a></li>
+                    <li><a href="Contactus.html">Contact</a></li>
+                    <li><a href="Stats.html">Stats</a></li>
+                  </ul>
+                </div>
+                
 
                 <!-- por las dudas se necesite un buscador mas adelante
                     
@@ -62,7 +66,7 @@
                   </div>
                     
                   <div class="texto-container">
-                    <h2>Upcoming Events</h2>
+                    <h2 class="texto-upcoming">Upcoming Event</h2>
                   </div>
 
                   <div class="icon-right">
@@ -81,45 +85,66 @@
         <div class="cb-container">
           <div class="cb-left">
             <div class="cb-left__inner">
-              <label class="label-container">
-                <input type="checkbox" checked="checked">
-                Category
-                <span class="checkmark"></span>
-              </label>
-              
-              <label class="label-container">
-                <input type="checkbox">
-                Category
-                <span class="checkmark"></span>
-              </label>
-              
-              <label class="label-container">
-                <input type="checkbox">
-                Category
-                <span class="checkmark"></span>
-              </label>
-              
-              <label class="label-container">
-                <input type="checkbox">
-                Category
-                <span class="checkmark"></span>
-              </label> 
+
+              <div class="only-768">
+                <label class="label-container">
+                  <input class="width50 checkbox" type="checkbox" id="cb1" name="cbs" value="Food Fair">
+                  <p class="width50">Food Fair</p>
+                </label>
+                
+                <label class="label-container">
+                  <input class="width50 checkbox" type="checkbox" id="cb2" name="cbs" value="Museum">
+                  <p class="width50">Museum</p>
+                </label>
+              </div>
+
+              <div class="only-768">
+
+                <label class="label-container">
+                  <input class="width50 checkbox" type="checkbox" id="cb3" name="cbs" value="Costume Party">
+                  <p class="width50">Costume Party</p>
+                </label>
+                
+                <label class="label-container">
+                  <input class="width50 checkbox" type="checkbox" id="cb4" name="cbs" value="Music Concert">
+                  <p class="width50">Music Concert</p>
+                </label> 
+    
+              </div>
+
+              <div class="only-768">
+
+                <label class="label-container">
+                  <input class="width50 checkbox" type="checkbox" id="cb5" name="cbs" value="Race">
+                  <p class="width50">Race</p>
+                </label>
   
-              <label class="label-container">
-                <input type="checkbox" checked="checked">
-                Category
-                <span class="checkmark"></span>
-              </label>
+                <label class="label-container">
+                  <input class="width50 checkbox" type="checkbox" id="cb6" name="cbs" value="Book Exchange">
+                  <p class="width50">Book Exchange</p>
+                </label>
 
+              </div>
 
+              <div class="only-768">
+
+                <label class="label-container">
+                  <input class="width50 checkbox" type="checkbox" id="cb7" name="cbs" value="Cinema">
+                  <p class="width50">Cinema</p>
+                </label>
+
+              </div>
+              
+             
+              
+ 
+             
             </div>
-           
           </div>
 
           <div class="input-right">
-             <form action="">
+             <form class="form-search" action="">
                 <input type="input">
-                <span class="checkmark"></span>
                 <i class='bx bx-search-alt-2 bx-rotate-90'></i>
              </form>
               
@@ -128,9 +153,44 @@
         </div>
 
         <div class="card-container">
+          <div class="cards">
 
-          <div class="cards"></div>
+            <div class="card-wrapper">
 
+            </div>
+            <!--
+            <div class="card card1">
+              <div class="card-header">
+                <div class="imagen">
+                  <img src="recursos/Food_Fair.jpg" alt="imagen card 1">
+                </div>
+                
+              </div>
+              <div class="card-main">
+                <div class="titulos">
+                  <h1>Titulo</h1>
+                  <p>Texto descriptivo</p>
+                </div>
+
+              </div>
+              <div class="card-footer">
+                <div class="footer">
+                  <div class="titulo">
+                    <p>Price $0000</p>
+                  </div>
+
+                  <div class="boton">
+                    <button><a href="Details.html">ver mas</a></button>
+                  </div>
+                 
+                </div>
+
+              </div>
+
+            </div>
+            -->
+
+          </div>
         </div>
 
       </div>
