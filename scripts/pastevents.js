@@ -235,7 +235,7 @@ function pastevent() {
          <div class="card-main">
            <div class="titulos">
              <h1>${card.name}</h1>
-             <p>${textoLength(card.description)}</p>
+             <p>${textoLength(card.description, 40)}</p>
            </div>
      
          </div>

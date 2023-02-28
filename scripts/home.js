@@ -191,7 +191,7 @@ data = {
 //este es el task numero 3
 
 //agregamos elipsis al final del texto descriptivo
-function textoLength (texto, maximopermitido){
+function textoLength(texto, maximopermitido){
   return `${texto.slice(0, maximopermitido)} …`;
 }
 
@@ -227,41 +227,45 @@ let cards = document.querySelectorAll(".card");
 function CrearCards() {
   const cards = document.querySelector(".cards");
 
+  const inputSearch = document.querySelector('.input-search');
   const cardWrapper = document.querySelector(".card-wrapper");
+
+  c('input search: '+inputSearch);
   let plantillaCard = "";
 
   for (let card of data.events) {
-    plantillaCard += `
-        <div class="card card1">
-         <div class="card-header">
-           <div class="imagen">
-             <img src="${card.image}" alt="imagen card 1">
-           </div>
-           
-         </div>
-         <div class="card-main">
-           <div class="titulos">
-             <h1>${card.name}</h1>
-             <p>${textoLength(card.description, 40)}</p>
-           </div>
-     
-         </div>
-         <div class="card-footer">
-           <div class="footer">
-             <div class="titulo">
-               <p>Price: $${card.price}</p>
-             </div>
-     
-             <div class="boton">
-               <button><a href="Details.html">ver mas</a></button>
-             </div>
-            
-           </div>
-     
-         </div>
-     
-       </div>
-       `;
+
+    plantillaCard +=  `
+    <div class="card card1">
+    <div class="card-header">
+      <div class="imagen">
+        <img src="${card.image}" alt="imagen card 1">
+      </div>
+      
+    </div>
+    <div class="card-main">
+      <div class="titulos">
+        <h1>${card.name}</h1>
+        <p>${textoLength(card.description, 40)}</p>
+      </div>
+
+    </div>
+    <div class="card-footer">
+      <div class="footer">
+        <div class="titulo">
+          <p>Price: $${card.price}</p>
+        </div>
+
+        <div class="boton">
+          <button><a href="Details.html">ver mas</a></button>
+        </div>
+       
+      </div>
+
+    </div>
+
+    </div>
+    `;
   }
   //cards.innerHTML = plantillaCard;
   cardWrapper.innerHTML = plantillaCard;
