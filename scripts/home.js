@@ -224,9 +224,15 @@ function Checkboxfn() {
 //dom
 let cards = document.querySelectorAll(".card");
 
+//funcion para filtrar los datos por categoria
+function FiltrarDatos(){
+
+  let filtradoPorCategoria = data.events.filter((datos) => datos.category === "Museum");
+  c(filtradoPorCategoria);
+}
+
 function CrearCards() {
   const cards = document.querySelector(".cards");
-
   const inputSearch = document.querySelector('.input-search');
   const cardWrapper = document.querySelector(".card-wrapper");
 
@@ -235,7 +241,9 @@ function CrearCards() {
 
   for (let card of data.events) {
 
-    plantillaCard +=  `
+    if(card.category === 'Museum'){
+
+      plantillaCard +=  `
     <div class="card card1">
     <div class="card-header">
       <div class="imagen">
@@ -266,11 +274,16 @@ function CrearCards() {
 
     </div>
     `;
+
+    }
+
+    
   }
   //cards.innerHTML = plantillaCard;
   cardWrapper.innerHTML = plantillaCard;
 }
 
 //Cbvalues("Museum", data.events);
+FiltrarDatos();
 Checkboxfn();
 CrearCards();
