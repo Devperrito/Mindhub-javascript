@@ -188,6 +188,8 @@ data = {
   ],
 };
 
+//este es el task numero 3
+
 //agregamos elipsis al final del texto descriptivo
 function textoLength (texto, maximopermitido){
   return `${texto.slice(0, maximopermitido)} …`;
@@ -224,6 +226,7 @@ let cards = document.querySelectorAll(".card");
 
 function CrearCards() {
   const cards = document.querySelector(".cards");
+
   const cardWrapper = document.querySelector(".card-wrapper");
   let plantillaCard = "";
 
