@@ -188,6 +188,8 @@ data = {
   ],
 };
 
+//este es el task numero 2
+
 //agregamos elipsis al final del texto descriptivo
 function textoLength (texto, maximopermitido){
   return `${texto.slice(0, maximopermitido)} …`;
