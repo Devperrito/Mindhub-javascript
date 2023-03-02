@@ -188,7 +188,8 @@ data = {
   ],
 };
 
-//este es el task numero 3
+//este es el task numero 3 ya
+let plantillaCard = "";
 
 //agregamos elipsis al final del texto descriptivo
 function textoLength(texto, maximopermitido){
@@ -223,27 +224,39 @@ function Checkboxfn() {
 
 //dom
 let cards = document.querySelectorAll(".card");
+const cardWrapper = document.querySelector(".card-wrapper");
 
 //funcion para filtrar los datos por categoria
-function FiltrarDatos(){
 
-  let filtradoPorCategoria = data.events.filter((datos) => datos.category === "Museum");
-  c(filtradoPorCategoria);
-}
+
+const searchbtn = document.querySelector('.searchbtn');
+
+searchbtn.addEventListener('click', CrearCards);
 
 function CrearCards() {
-  const cards = document.querySelector(".cards");
-  const inputSearch = document.querySelector('.input-search');
+
+  const inputvalue = document.querySelector('.input-search').value;
+
+
+ c("llamo a la funcion!!");
+
+
+ data.events.filter((card) => {
+    //c("funciona al iniciar: "+card.category);
+   c("input value es: "+inputvalue);
+
+
+  
+ });
+  /*
   const cardWrapper = document.querySelector(".card-wrapper");
 
-  c('input search: '+inputSearch);
-  let plantillaCard = "";
-
+  
   for (let card of data.events) {
 
-    if(card.category === 'Museum'){
+   if(card.category === ''){
 
-      plantillaCard +=  `
+    plantillaCard +=  `
     <div class="card card1">
     <div class="card-header">
       <div class="imagen">
@@ -275,15 +288,18 @@ function CrearCards() {
     </div>
     `;
 
+    }else{
+
     }
 
     
   }
+
+  */
   //cards.innerHTML = plantillaCard;
   cardWrapper.innerHTML = plantillaCard;
 }
 
 //Cbvalues("Museum", data.events);
-FiltrarDatos();
 Checkboxfn();
 CrearCards();

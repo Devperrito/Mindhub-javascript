@@ -1,3 +1,17 @@
+/* ========= FILTRAR ============*/
+
+.mostrarcard {
+  display: block;
+}
+
+.escondercards {
+  display: none;
+}
+
+/* ========= FILTRAR ============ */
+
+
+
 html {
   box-sizing: border-box;
 }
