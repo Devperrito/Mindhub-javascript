@@ -188,7 +188,7 @@ data = {
   ],
 };
 
-//este es el task numero 3 ya
+//este es el task numero 3 ya...
 let plantillaCard = ""; 
 
 //agregamos elipsis al final del texto descriptivo
