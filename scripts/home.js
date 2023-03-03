@@ -1,5 +1,9 @@
+import { data } from "./data.js";
+
 //abreviamos console.log()
 let c = console.log;
+
+c("arrays? "+data.currentDate);
 
 //texto length
 //let texto = document.querySelectorAll('');
