@@ -47,21 +47,34 @@ const cardWrapper = document.querySelector(".card-wrapper");
 
 //funcion para filtrar los datos por categoria
 
-
+const inputvalue = document.querySelector('.input-search').value;
 const searchbtn = document.querySelector('.searchbtn');
+
+const d = document;
 
 searchbtn.addEventListener('click', CrearCards);
 
-function CrearCards() {
+function CrearCards(inputvalue, searchbtn) {
 
-  const inputvalue = document.querySelector('.input-search').value;
-
+ 
 
  c("llamo a la funcion!!");
 
 
  data.events.filter((card) => {
     //c("funciona al iniciar: "+card.category);
+    
+    d.addEventListener("keyup", e => {
+
+      if(e.target.matches(card.category)) {
+        c("e === inputvalue: "+e.target.value);
+      }
+
+
+      c("que coño es d: "+e.target.value);
+    });
+
+
    c("input value es: "+inputvalue);
 
 
