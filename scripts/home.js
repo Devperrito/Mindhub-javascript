@@ -2,16 +2,16 @@
 //abreviamos console.log()
 let c = console.log;
 
-c("arrays? "+data.currentDate);
+c("arrays? " + data.currentDate);
 
 //texto length
 //let texto = document.querySelectorAll('');
 
 //este es el task numero 3 ya...
-let plantillaCard = ""; 
+let plantillaCard = "";
 
 //agregamos elipsis al final del texto descriptivo
-function textoLength(texto, maximopermitido){
+function textoLength(texto, maximopermitido) {
   return `${texto.slice(0, maximopermitido)} …`;
 }
 
@@ -47,39 +47,68 @@ const cardWrapper = document.querySelector(".card-wrapper");
 
 //funcion para filtrar los datos por categoria
 
-const inputvalue = document.querySelector('.input-search').value;
-const searchbtn = document.querySelector('.searchbtn');
+const inputvalue = document.querySelector(".input-search").value;
+const searchbtn = document.querySelector(".searchbtn");
 
 const d = document;
 
-searchbtn.addEventListener('click', CrearCards);
+searchbtn.addEventListener("click", CrearCards);
 
 function CrearCards(inputvalue, searchbtn) {
-
- 
-
- c("llamo a la funcion!!");
-
-
- data.events.filter((card) => {
-    //c("funciona al iniciar: "+card.category);
+  data.events.filter((card) => {
+    plantillaCard += `
+  <div class="card card1">
+  <div class="card-header">
+    <div class="imagen">
+      <img src="${card.image}" alt="imagen card 1">
+    </div>
     
-    d.addEventListener("keyup", e => {
+  </div>
+  <div class="card-main">
+    <div class="titulos">
+      <h1>${card.name}</h1>
+      <p>${textoLength(card.description, 40)}</p>
+    </div>
 
-      if(e.target.matches(card.category)) {
-        c("e === inputvalue: "+e.target.value);
+  </div>
+  <div class="card-footer">
+    <div class="footer">
+      <div class="titulo">
+        <p>Price: $${card.price}</p>
+      </div>
+
+      <div class="boton">
+        <button><a href="Details.html">ver mas</a></button>
+      </div>
+     
+    </div>
+
+  </div>
+
+  </div>
+  `;
+
+    d.addEventListener("keyup", (e) => {
+      if (e.target.value === card.category) {
+        c("e === inputvalue: " + e.target.value);
+
+        /* d.querySelectorAll('.card').forEach((elemento) => {
+          elemento.textContent.toLocaleLowerCase().includes(e.target.value)
+          ? elemento.classList.remove("filter-card")
+          : elemento.classList.add("filter-card");
+          
+        }); */
+
+        d.querySelectorAll(".card").forEach((elemento) => {
+          elemento.textContent.toLocaleLowerCase().includes(e.target.value)
+            ? elemento.classList.remove("filter-card")
+            : elemento.classList.add("filter-card");
+        });
       }
-
-
-      c("que coño es d: "+e.target.value);
     });
+  });
 
-
-   c("input value es: "+inputvalue);
-
-
-  
- });
+  cardWrapper.innerHTML = plantillaCard;
   /*
   const cardWrapper = document.querySelector(".card-wrapper");
 
@@ -129,7 +158,7 @@ function CrearCards(inputvalue, searchbtn) {
 
   */
   //cards.innerHTML = plantillaCard;
-  cardWrapper.innerHTML = plantillaCard;
+  //cardWrapper.innerHTML = plantillaCard;
 }
 
 //Cbvalues("Museum", data.events);
