@@ -56,6 +56,7 @@ searchbtn.addEventListener("click", CrearCards);
 
 function CrearCards(inputvalue, searchbtn) {
   data.events.filter((card) => {
+
     plantillaCard += `
   <div class="card card1">
   <div class="card-header">
@@ -88,24 +89,48 @@ function CrearCards(inputvalue, searchbtn) {
   </div>
   `;
 
-    d.addEventListener("keyup", (e) => {
-      if (e.target.value === card.category) {
+    d.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      c("que me brinda e event "+inputvalue);
+
+      if (inputvalue === card.category) {
         c("e === inputvalue: " + e.target.value);
 
-        /* d.querySelectorAll('.card').forEach((elemento) => {
+        d.querySelectorAll(".card").forEach((elemento) => {
+
+          if(elemento.classList.contains('escondercards')){
+            elemento.classList.remove("escondercards");
+          }
+          
+          
+           /* d.querySelectorAll('.card').forEach((elemento) => {
           elemento.textContent.toLocaleLowerCase().includes(e.target.value)
           ? elemento.classList.remove("filter-card")
           : elemento.classList.add("filter-card");
           
         }); */
-
-        d.querySelectorAll(".card").forEach((elemento) => {
+          /*
           elemento.textContent.toLocaleLowerCase().includes(e.target.value)
-            ? elemento.classList.remove("filter-card")
-            : elemento.classList.add("filter-card");
+            ? elemento.classList.remove("escondercards")
+            : elemento.classList.add("escondercards"); */
         });
+      }else if(e.target.value !== card.category) {
+
+        if(!elemento.classList.contains('escondercards')){
+          elemento.classList.add("escondercards");
+        }else {
+          
+        }
+
+
+
       }
+
+
     });
+
+
   });
 
   cardWrapper.innerHTML = plantillaCard;
