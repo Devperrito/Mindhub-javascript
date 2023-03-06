@@ -47,14 +47,15 @@ const cardWrapper = document.querySelector(".card-wrapper");
 
 //funcion para filtrar los datos por categoria
 
-const inputvalue = document.querySelector(".input-search").value;
+
 const searchbtn = document.querySelector(".searchbtn");
 
 const d = document;
 
-searchbtn.addEventListener("click", CrearCards);
+//searchbtn.addEventListener("click", CrearCards);
 
-function CrearCards(inputvalue, searchbtn) {
+function CrearCards(inputvalue) {
+
   data.events.filter((card) => {
 
     plantillaCard += `
@@ -89,40 +90,53 @@ function CrearCards(inputvalue, searchbtn) {
   </div>
   `;
 
-    d.addEventListener("click", (e) => {
-      e.preventDefault();
+    searchbtn.addEventListener("click", (e) => {
 
-      c("que me brinda e event "+inputvalue);
+      const inputvalue = document.querySelector(".input-search").value;
+
+      c("se presiono btn");
+      e.preventDefault();
 
       if (inputvalue === card.category) {
         c("e === inputvalue: " + e.target.value);
 
+        c("CON COINCIDENCIA");
+
         d.querySelectorAll(".card").forEach((elemento) => {
 
-          if(elemento.classList.contains('escondercards')){
-            elemento.classList.remove("escondercards");
+          if(elemento.classList.contains('card')){
+
+            if(elemento.classList.contains('escondercards')){
+              elemento.classList.remove("escondercards");
+            }
           }
+        
+            /* d.querySelectorAll('.card').forEach((elemento) => {
+            elemento.textContent.toLocaleLowerCase().includes(e.target.value)
+            ? elemento.classList.remove("filter-card")
+            : elemento.classList.add("filter-card");
           
-          
-           /* d.querySelectorAll('.card').forEach((elemento) => {
-          elemento.textContent.toLocaleLowerCase().includes(e.target.value)
-          ? elemento.classList.remove("filter-card")
-          : elemento.classList.add("filter-card");
-          
-        }); */
-          /*
-          elemento.textContent.toLocaleLowerCase().includes(e.target.value)
+           }); */
+           /*
+            elemento.textContent.toLocaleLowerCase().includes(e.target.value)
             ? elemento.classList.remove("escondercards")
             : elemento.classList.add("escondercards"); */
+
         });
       }else if(e.target.value !== card.category) {
+        c("SIN COINCIDENCIA");
+        d.querySelectorAll(".card").forEach((elemento) => {
 
-        if(!elemento.classList.contains('escondercards')){
-          elemento.classList.add("escondercards");
-        }else {
-          
-        }
+          if(elemento.classList.contains('card')){
 
+            if(elemento.classList.contains('escondercards')){
+              elemento.classList.add("escondercards");
+            }
+          }
+
+        });
+
+        
 
 
       }
