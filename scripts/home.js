@@ -15,45 +15,61 @@ function textoLength(texto, maximopermitido) {
   return `${texto.slice(0, maximopermitido)} …`;
 }
 
+//ver si hay valores duplicados en el array
+const fnDuplicado = arrayvalue => new Set(arrayvalue).size < arrayvalue.length;
+
 function Checkboxfn() {
   //traemos los checkbox
   let cbs = document.querySelectorAll(".checkbox");
   let cont = 0;
 
+  let arrayvalues = [];
+
   for (let cb of cbs) {
     cont++;
     cb.addEventListener("change", function () {
 
-      let isChecked = false; //si esta checked entonces le poasariamos true a Cbvalues()
-      let arrayvalues = [];
+      c("cb: Checkboxfn()");
 
+      let isChecked = false; //si esta checked entonces le poasariamos true a Cbvalues()
+     
       if (cb.checked === true) {
 
-        arrayvalues += arrayvalues.push(cb.value);
-
-        c("que nos trae arrayvalues: "+arrayvalues);
+        c(fnDuplicado(arrayvalues));
+        arrayvalues.push(cb.value);
+        
+        if(fnDuplicado(arrayvalues)){
+          c("si tiene duplicados: "+cb.value);
+        }
+     
 
         isChecked = true;
         Cbvalues(cb.value, data.events, isChecked); //aqui instacioamos la funcion con parametro 
 
         //c("deberia tener el value: " + cb.value);
       }else {
+
+        arrayvalues = arrayvalues.filter(arrayvalue => arrayvalue !== cb.value); //TODO: AL FIN FUNCIONA CUANDO NO ESTA SELECCIONADO SE QUITA EL VALUE DEL ARRAY
+        
         isChecked = false;
         Cbvalues(cb.value, data.events, isChecked);
       }
-    });
 
+      c("que nos trae arrayvalues: "+arrayvalues);
+    });
+    
     cont++
   }
 
 }
 
+
+
+
+
 //trabajaremos en los checkboxes
 function Cbvalues(selectedCategory, datacategory, ischeked) {
 
-
-
- // c("la category es: "+selectedCategory);
 
 
 
@@ -63,11 +79,11 @@ function Cbvalues(selectedCategory, datacategory, ischeked) {
 
   for (const data of datacategory) {
 
-   
-
     //arrayvalues.push(selectedCategory);
 
     if (selectedCategory === data.category) {
+
+      
   
       //c("is nt define?: "+cards);
       if(ischeked){
@@ -80,7 +96,7 @@ function Cbvalues(selectedCategory, datacategory, ischeked) {
         cards[i].classList.add("escondercards"); //si no esta cheked no se mostrara cards
       }
       
-      c(selectedCategory);
+      //c(selectedCategory);
       //c("funciono entro en Cbvalues");
     }else {
 
