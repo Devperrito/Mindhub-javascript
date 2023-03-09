@@ -15,16 +15,6 @@ function textoLength(texto, maximopermitido) {
   return `${texto.slice(0, maximopermitido)} …`;
 }
 
-//trabajaremos en los checkboxes
-function Cbvalues(selectedCategory, datacategory) {
-  for (const data of datacategory) {
-    if (selectedCategory === data.category) {
-      c(selectedCategory);
-      c("funciono entro en Cbvalues");
-    }
-  }
-}
-
 function Checkboxfn() {
   //traemos los checkbox
   let cbs = document.querySelectorAll(".checkbox");
@@ -32,13 +22,78 @@ function Checkboxfn() {
 
   for (let cb of cbs) {
     cont++;
-    cb.addEventListener("click", function () {
+    cb.addEventListener("change", function () {
+
+      let isChecked = false; //si esta checked entonces le poasariamos true a Cbvalues()
+      let arrayvalues = [];
+
       if (cb.checked === true) {
-        Cbvalues(cb.value, data.events); //aqui instacioamos la funcion
-        c("deberia tener el value: " + cb.value);
+
+        arrayvalues += arrayvalues.push(cb.value);
+
+        c("que nos trae arrayvalues: "+arrayvalues);
+
+        isChecked = true;
+        Cbvalues(cb.value, data.events, isChecked); //aqui instacioamos la funcion con parametro 
+
+        //c("deberia tener el value: " + cb.value);
+      }else {
+        isChecked = false;
+        Cbvalues(cb.value, data.events, isChecked);
       }
     });
+
+    cont++
   }
+
+}
+
+//trabajaremos en los checkboxes
+function Cbvalues(selectedCategory, datacategory, ischeked) {
+
+
+
+ // c("la category es: "+selectedCategory);
+
+
+
+  let i = 0;
+
+  let cards = document.querySelectorAll(".card");
+
+  for (const data of datacategory) {
+
+   
+
+    //arrayvalues.push(selectedCategory);
+
+    if (selectedCategory === data.category) {
+  
+      //c("is nt define?: "+cards);
+      if(ischeked){
+
+        if(cards[i].classList.contains('escondercards')){ //si esta checked entonces va a mostrar cards
+          cards[i].classList.remove("escondercards");
+        }
+
+      }else { 
+        cards[i].classList.add("escondercards"); //si no esta cheked no se mostrara cards
+      }
+      
+      c(selectedCategory);
+      //c("funciono entro en Cbvalues");
+    }else {
+
+      if(!cards[i].classList.contains('escondercards')){
+        cards[i].classList.add("escondercards");
+      }
+
+    }
+
+    i++;
+  }
+
+  //c("todos el arrayvalues checked:: "+arrayvalues);
 }
 
 //dom
@@ -46,15 +101,15 @@ let cards = document.querySelectorAll(".card");
 const cardWrapper = document.querySelector(".card-wrapper");
 
 //funcion para filtrar los datos por categoria
-
 const inputvalue = document.querySelector(".input-search").value;
 const searchbtn = document.querySelector(".searchbtn");
 
-const d = document;
+//const  = document.querySelectorAll();
 
-searchbtn.addEventListener("click", CrearCards);
+//searchbtn.addEventListener("click", CrearCards);
 
-function CrearCards(inputvalue, searchbtn) {
+function CrearCards() {
+
   data.events.filter((card) => {
 
     plantillaCard += `
@@ -89,101 +144,58 @@ function CrearCards(inputvalue, searchbtn) {
   </div>
   `;
 
-    d.addEventListener("click", (e) => {
-      e.preventDefault();
+});
 
-      c("que me brinda e event "+inputvalue);
+searchbtn.addEventListener("click", (e) => {
 
-      if (inputvalue === card.category) {
-        c("e === inputvalue: " + e.target.value);
+  const inputvalue = document.querySelector(".input-search").value;
 
-        d.querySelectorAll(".card").forEach((elemento) => {
+  let cards = document.querySelectorAll(".card");
 
-          if(elemento.classList.contains('escondercards')){
-            elemento.classList.remove("escondercards");
-          }
-          
-          
-           /* d.querySelectorAll('.card').forEach((elemento) => {
-          elemento.textContent.toLocaleLowerCase().includes(e.target.value)
-          ? elemento.classList.remove("filter-card")
-          : elemento.classList.add("filter-card");
-          
-        }); */
-          /*
-          elemento.textContent.toLocaleLowerCase().includes(e.target.value)
-            ? elemento.classList.remove("escondercards")
-            : elemento.classList.add("escondercards"); */
-        });
-      }else if(e.target.value !== card.category) {
-
-        if(!elemento.classList.contains('escondercards')){
-          elemento.classList.add("escondercards");
-        }else {
-          
-        }
-
-
-
-      }
-
-
-    });
-
-
-  });
-
-  cardWrapper.innerHTML = plantillaCard;
-  /*
-  const cardWrapper = document.querySelector(".card-wrapper");
-
+  e.preventDefault();
   
-  for (let card of data.events) {
+  c("que me brinda e event "+inputvalue);
 
-   if(card.category === ''){
+  recorrecards();
+  
+});
 
-    plantillaCard +=  `
-    <div class="card card1">
-    <div class="card-header">
-      <div class="imagen">
-        <img src="${card.image}" alt="imagen card 1">
-      </div>
-      
-    </div>
-    <div class="card-main">
-      <div class="titulos">
-        <h1>${card.name}</h1>
-        <p>${textoLength(card.description, 40)}</p>
-      </div>
+cardWrapper.innerHTML = plantillaCard;
+}
 
-    </div>
-    <div class="card-footer">
-      <div class="footer">
-        <div class="titulo">
-          <p>Price: $${card.price}</p>
-        </div>
+//recorre y renderiza las cards
+function recorrecards(){
 
-        <div class="boton">
-          <button><a href="Details.html">ver mas</a></button>
-        </div>
-       
-      </div>
+  const inputvalue = document.querySelector(".input-search").value;
+  let cards = document.querySelectorAll(".card");
 
-    </div>
+  data.events.map((card, i) => {
+    if (inputvalue === card.category) {
 
-    </div>
-    `;
-
-    }else{
-
+        c("e === inputvalue: " + inputvalue);
+  
+        if(cards[i].classList.contains('escondercards')){
+          cards[i].classList.remove("escondercards");
+        }
+        
+         /* d.querySelectorAll('.card').forEach((elemento) => {
+        elemento.textContent.toLocaleLowerCase().includes(e.target.value)
+        ? elemento.classList.remove("filter-card")
+        : elemento.classList.add("filter-card");
+        
+      }); */
+        /*
+        elemento.textContent.toLocaleLowerCase().includes(e.target.value)
+          ? elemento.classList.remove("escondercards")
+          : elemento.classList.add("escondercards"); */
+  
+    }else {
+  
+      if(!cards[i].classList.contains('escondercards')){
+        cards[i].classList.add("escondercards");
+      }
     }
-
-    
-  }
-
-  */
-  //cards.innerHTML = plantillaCard;
-  //cardWrapper.innerHTML = plantillaCard;
+  });
 }
 
 //Cbvalues("Museum", data.events);
