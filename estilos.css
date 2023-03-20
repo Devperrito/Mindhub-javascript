@@ -8,6 +8,12 @@
   display: none;
 }
 
+/*========== info mensaje cuando no hay coincidencia  ========*/
+#estiloh1 {
+  color: red;
+  font-size: 30px;
+}
+
 /* ========= FILTRAR ============ */
 
 
@@ -375,6 +381,14 @@ footer {
   background-color: #eaeaea;
 }
 
+/* footer details ===================================== */
+.footer-detail {
+  background: red;
+  position: absolute;
+  bottom: 0;
+}
+
+
 .footer-iconos {
   display: flex;
   align-items: center;
@@ -543,9 +557,12 @@ td {
   flex-direction: column;
   width: 90%;
   height: 90%;
+  min-height: 200px;
   box-shadow: 8px 8px 5px 0px rgba(0, 0, 0, 0.75);
   border-radius: 10px;
   border: 1px solid black;
+
+  padding: 10px;
 }
 
 

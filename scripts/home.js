@@ -1,14 +1,13 @@
-//import { data } from "./data.js";
-//abreviamos console.log()
 let c = console.log;
 
-c("arrays? " + data.currentDate);
-
-//texto length
-//let texto = document.querySelectorAll('');
-
-//este es el task numero 3 ya...
 let plantillaCard = "";
+
+//mensaje global cards informacion
+let mensajeglobal = "";
+
+//creamos h1 de mensje de no coincidiencia
+let h1 = document.createElement("h1");
+h1.setAttribute("id", "estiloh1");
 
 //agregamos elipsis al final del texto descriptivo
 function textoLength(texto, maximopermitido) {
@@ -16,118 +15,40 @@ function textoLength(texto, maximopermitido) {
 }
 
 //ver si hay valores duplicados en el array
-const fnDuplicado = arrayvalue => new Set(arrayvalue).size < arrayvalue.length;
+const fnDuplicado = (arrayvalue) => new Set(arrayvalue).size < arrayvalue.length;
 
-function Checkboxfn() {
-  //traemos los checkbox
-  let cbs = document.querySelectorAll(".checkbox");
-  let cont = 0;
-
-  let arrayvalues = [];
-
-  for (let cb of cbs) {
-    cont++;
-    cb.addEventListener("change", function () {
-
-      c("cb: Checkboxfn()");
-
-      let isChecked = false; //si esta checked entonces le poasariamos true a Cbvalues()
-     
-      if (cb.checked === true) {
-
-        c(fnDuplicado(arrayvalues));
-        arrayvalues.push(cb.value);
-        
-        if(fnDuplicado(arrayvalues)){
-          c("si tiene duplicados: "+cb.value);
-        }
-     
-
-        isChecked = true;
-        Cbvalues(cb.value, data.events, isChecked); //aqui instacioamos la funcion con parametro 
-
-        //c("deberia tener el value: " + cb.value);
-      }else {
-
-        arrayvalues = arrayvalues.filter(arrayvalue => arrayvalue !== cb.value); //TODO: AL FIN FUNCIONA CUANDO NO ESTA SELECCIONADO SE QUITA EL VALUE DEL ARRAY
-        
-        isChecked = false;
-        Cbvalues(cb.value, data.events, isChecked);
-      }
-
-      c("que nos trae arrayvalues: "+arrayvalues);
-    });
-    
-    cont++
+// ======================== FUNCION DEVUELVE HOME CARDS ===================
+function homecards (){
+  let arr_cardupcoming = []; 
+  for(datahome of data.events){
+      arr_cardupcoming.push(
+        {
+          _id: `${datahome._id}`,
+          "image":`${datahome.image}`,
+          "name":`${datahome.name}`,
+          "date":`${datahome.date}`,
+          "description":`${datahome.description}`,
+          "category":`${datahome.category}`,
+          "place":`${datahome.place}`,
+          "capacity":`${datahome.capacity}`,
+          "assistance":`${datahome.assistance}`,
+          "price":`${datahome.price}`
+        },
+      );
   }
+  return arr_cardupcoming;
+}  
 
-}
-
-
-
-
-
-//trabajaremos en los checkboxes
-function Cbvalues(selectedCategory, datacategory, ischeked) {
-
-
-
-
-  let i = 0;
-
-  let cards = document.querySelectorAll(".card");
-
-  for (const data of datacategory) {
-
-    //arrayvalues.push(selectedCategory);
-
-    if (selectedCategory === data.category) {
-
-      
-  
-      //c("is nt define?: "+cards);
-      if(ischeked){
-
-        if(cards[i].classList.contains('escondercards')){ //si esta checked entonces va a mostrar cards
-          cards[i].classList.remove("escondercards");
-        }
-
-      }else { 
-        cards[i].classList.add("escondercards"); //si no esta cheked no se mostrara cards
-      }
-      
-      //c(selectedCategory);
-      //c("funciono entro en Cbvalues");
-    }else {
-
-      if(!cards[i].classList.contains('escondercards')){
-        cards[i].classList.add("escondercards");
-      }
-
-    }
-
-    i++;
-  }
-
-  //c("todos el arrayvalues checked:: "+arrayvalues);
-}
-
-//dom
-let cards = document.querySelectorAll(".card");
 const cardWrapper = document.querySelector(".card-wrapper");
 
 //funcion para filtrar los datos por categoria
 const inputvalue = document.querySelector(".input-search").value;
 const searchbtn = document.querySelector(".searchbtn");
 
-//const  = document.querySelectorAll();
-
-//searchbtn.addEventListener("click", CrearCards);
+let mensajecards = "";
 
 function CrearCards() {
-
   data.events.filter((card) => {
-
     plantillaCard += `
   <div class="card card1">
   <div class="card-header">
@@ -150,7 +71,7 @@ function CrearCards() {
       </div>
 
       <div class="boton">
-        <button><a href="Details.html">ver mas</a></button>
+        <button><a href="Details.html?id=${card._id}">ver mas</a></button>
       </div>
      
     </div>
@@ -159,61 +80,154 @@ function CrearCards() {
 
   </div>
   `;
+  });
+  cardWrapper.innerHTML = plantillaCard;
+}
 
-});
+function insertSearchValue(){
 
-searchbtn.addEventListener("click", (e) => {
+  const searchbtn = document.querySelector(".searchbtn");
 
-  const inputvalue = document.querySelector(".input-search").value;
+
+  searchbtn.addEventListener("click", (e) => {
+    const inputvalue = document.querySelector(".input-search").value;
+
+    e.preventDefault();
+
+    let mensajevacio =  document.createTextNode("");
+    let mensajecontexto = document.createTextNode("el valor ingresado no coincide con nuestras busquedas... ");
+
+    if(existeValue(inputvalue, homecards())){
+      mensaje(mensajevacio);
+      recorrecards(homecards());
+      h1.textContent = "";
+      
+    }else{
+      let cards = document.querySelectorAll(".card");
+      cards.forEach(card => {
+        card.classList.add("escondercards");
+      });
+
+      mensaje(mensajecontexto);
+    }
+    
+  });
+  
+}
+
+//funcion que escriba el mensaje en la card cuando no coinciden
+function mensaje(mensajecard){
+
+  let getCardWrapper = document.querySelector(".card-wrapper");
+  let mensaje = document.createTextNode(`${mensajecard}`);
+
+  if(h1.textContent.length > 3){
+    h1.appendChild(document.createTextNode(""));
+  }else{
+    h1.appendChild(mensajecard);
+  }
+
+  return getCardWrapper.appendChild(h1);
+}
+
+//metodo retorna TRUE si existe el valor input ingresado en la categoria del array
+function existeValue(inputvalue, homecards){
+  let coincidevalor = false;
+
+  homecards.map((value, i) => {
+    if(inputvalue.toLowerCase() === value.category.toLowerCase()){
+      coincidevalor = true;
+    }
+  });
+  return coincidevalor;
+}
+
+function Checkboxfn() {
+  //traemos los checkbox
+  let cbs = document.querySelectorAll(".checkbox");
+  let cont = 0;
+  
+  let arrayvalues = [];
+
+  for (let cb of cbs) {
+   
+    cb.addEventListener("change", function () {
+
+      let isChecked = false; //si esta checked entonces le poasariamos true a Cbvalues()
+
+      if (cb.checked === true) {
+        arrayvalues.push(cb.value);
+
+        if (fnDuplicado(arrayvalues)) {
+        }
+        isChecked = true;
+
+      } else {
+        arrayvalues = arrayvalues.filter(
+          (arrayvalue) => arrayvalue !== cb.value
+        ); 
+
+        isChecked = false;
+      }
+
+      Cbvalues(data.events, isChecked, arrayvalues);
+    });
+
+    cont++;
+  }
+}
+
+//trabajaremos en los checkboxes
+function Cbvalues(
+  datacategory,
+  ischeked,
+  arraDeSeleccionados
+) {
+  let i = 0;
 
   let cards = document.querySelectorAll(".card");
+  let cbs = document.querySelectorAll(".checkbox");
 
-  e.preventDefault();
-  
-  c("que me brinda e event "+inputvalue);
+  for (let data of datacategory) {
 
-  recorrecards();
-  
-});
+    cards[i].classList.add("escondercards"); // forzaremos a que tenga display none al inicio
 
-cardWrapper.innerHTML = plantillaCard;
+    arraDeSeleccionados.map((seleccionado => { // (arrDeSeleccionados) trae a todos los checkeados
+
+      if(seleccionado == data.category){
+        h1.textContent = "";
+        cards[i].classList.contains("escondercards") ? cards[i].classList.remove("escondercards") : cards[i].classList.add("");
+      }
+    }));
+
+    if(arraDeSeleccionados.length === 0){ // si la lista de seleccionados "chekeados" esta vacia, mostramos todas las cards
+      cards[i].classList.remove("escondercards");
+    }
+
+    i++;
+  } 
 }
 
 //recorre y renderiza las cards
-function recorrecards(){
-
+function recorrecards(arrayhome) {
   const inputvalue = document.querySelector(".input-search").value;
   let cards = document.querySelectorAll(".card");
 
-  data.events.map((card, i) => {
-    if (inputvalue === card.category) {
+ arrayhome.map((card, i) => {
+    if (inputvalue.toLowerCase() === card.category.toLowerCase()) {
 
-        c("e === inputvalue: " + inputvalue);
-  
-        if(cards[i].classList.contains('escondercards')){
-          cards[i].classList.remove("escondercards");
-        }
-        
-         /* d.querySelectorAll('.card').forEach((elemento) => {
-        elemento.textContent.toLocaleLowerCase().includes(e.target.value)
-        ? elemento.classList.remove("filter-card")
-        : elemento.classList.add("filter-card");
-        
-      }); */
-        /*
-        elemento.textContent.toLocaleLowerCase().includes(e.target.value)
-          ? elemento.classList.remove("escondercards")
-          : elemento.classList.add("escondercards"); */
-  
-    }else {
-  
-      if(!cards[i].classList.contains('escondercards')){
+      if (cards[i].classList.contains("escondercards")) {
+        cards[i].classList.remove("escondercards");
+      }
+    } else {
+      if (!cards[i].classList.contains("escondercards")) {
         cards[i].classList.add("escondercards");
       }
     }
   });
 }
 
-//Cbvalues("Museum", data.events);
-Checkboxfn();
 CrearCards();
+homecards();
+insertSearchValue();
+Checkboxfn();
